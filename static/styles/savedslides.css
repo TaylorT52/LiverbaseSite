@@ -1,0 +1,33 @@
+body{
+    background-color: #F2EFEF; 
+}
+
+.navbar {
+    background-color: #8C1515;
+  }
+  
+h1, h2 {
+    text-align: left;
+}
+
+.box {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top:10px;
+}
+
+.card-body {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.active{
+    text-decoration: underline;
+}
