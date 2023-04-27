@@ -31,3 +31,7 @@ h1, h2 {
 .active{
     text-decoration: underline;
 }
+
+.submission-container{
+    margin-top: 50px;
+}
