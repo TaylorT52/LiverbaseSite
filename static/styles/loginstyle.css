@@ -17,6 +17,12 @@ h1 {
 	color: black;
 }
 
+.signup-text{
+	text-align: center;
+	margin-top: 10vh;
+	margin-bottom:5vh;
+}
+
 .box {
 	background-color: white;
 	padding: 30px;
@@ -95,6 +101,7 @@ hr {
 	color: #750e0e;
 	text-decoration: none;
 }
+
 
 @media only screen and (max-width: 767px) {
 	.box {
