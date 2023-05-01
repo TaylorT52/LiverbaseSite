@@ -17,16 +17,16 @@
 			</div>
 			<div class="col-md-6 col-sm-12 d-flex justify-content-center align-items-center ml-n3">
 				<div class="box">
-					<form>
+					<form action="#" method="POST">
 						<div class="form-group">
-							<input type="email" class="form-control" id="email" placeholder="Email or phone number">
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email or phone number">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control"  placeholder="Password" id="password">
+							<input type="password" class="form-control" name="password" placeholder="Password" id="password">
 						</div>
                         <button type="submit" class="btn btn-login">Login</button>
 						<hr>
-                        <a href="signup.html" class="btn">Sign up</a>
+                        <a href="{{url_for('signup')}}" class="btn">Sign up</a>
 					</form>
 				</div>
 			</div>
