@@ -8,23 +8,30 @@ app = Flask(__name__)
 app.secret_key = "Change Me"
 
 # TODO: Fill in methods and routes
+@app.route("/savedslides", methods=["GET", "POST"])
+def savedslides():
+    return render_template("savedslides.html")
+
+@app.route("/submitslides", methods=["GET", "POST"])
+def submitslides():
+    return render_template("submitslides.html")
+
 @app.route("/", methods=["GET", "POST"])
 def signin():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        print(email)
-        print(password)
-        #TODO: FIX
-        user = db_session.query(User).where(User.email == email, User.password == password)
-        print(user)
+        user = db_session.query(User).where((User.email == email) & (User.password == password)).first()
 
-        if not user is None:
-            print("success!")
+        if not User == None:
+            print("Success!")
+            return redirect(url_for("submitslides"))
         else:
-            print("this is not a valid user")
+            print("Incorrect user/password")
 
-    return render_template("login.html")
+    else:
+        return render_template("login.html")
+
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
