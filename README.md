@@ -1,3 +1,4 @@
 # LiverbaseSite
 ATCS final project repo 
-- Upload slide images and get percent steatosis
+- Login functionality
+- Upload slide images w/ additional info
