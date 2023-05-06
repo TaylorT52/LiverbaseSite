@@ -1,8 +1,6 @@
 from flask import *
 from database import init_db, db_session
 from models import *
-from werkzeug.utils import secure_filename
-import os
 
 UPLOAD_FOLDER = "uploaded-files"
 
@@ -22,6 +20,7 @@ def submitslides():
         f = request.files["file"].read()
         submission = Submission(request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
         db_session.add(submission)
+
         db_session.commit()
     
     return render_template("submitslides.html")
@@ -64,7 +63,6 @@ def signup():
             return render_template("signup.html")
     else:
         return render_template("signup.html")
-
 
 if __name__ == "__main__":
     init_db()
