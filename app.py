@@ -19,12 +19,10 @@ def savedslides():
 @app.route("/submitslides", methods=["GET", "POST"])
 def submitslides():
     if request.method == "POST":
-        f = request.files["file"]
-        f = f.read()
+        f = request.files["file"].read()
         submission = Submission(request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
         db_session.add(submission)
         db_session.commit()
-        #f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
     
     return render_template("submitslides.html")
 
