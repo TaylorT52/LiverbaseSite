@@ -6,6 +6,15 @@ body {
 	height: 100%;
 }
 
+  
+  .upload-image-button:hover {
+	background-color: #B51818;
+  }
+  
+  #file-upload {
+	display: none;
+  }
+  
 .row{
     margin-top: 25vh; 
 }

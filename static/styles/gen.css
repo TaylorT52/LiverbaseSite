@@ -32,6 +32,25 @@ h1, h2 {
     text-decoration: underline;
 }
 
-.submission-container{
-    margin-top: 50px;
+.dashed-box {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-image-button {
+    background-color: #8C1515;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.upload-image-button:hover {
+    background-color: #B51818;
+}
+
+#file-upload {
+    display: none;
 }
