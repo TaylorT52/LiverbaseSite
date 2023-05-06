@@ -31,15 +31,22 @@
             <div class="card bg-light submission-container rounded-3">
               <div class="card-body">
                 <h2 class="card-title">Submission</h2>
-
-				<form method = "POST" enctype = "multipart/form-data">
-         			<input type ="file" name ="file"/>
-					<input type="number" name="percent_steatosis" placeholder="Percent Steatosis">
-					<input type="number" name="donor_age" placeholder="Donor Age">
-					<input type="text" name="other_info" placeholder="Additional Info">
-         			<input type = "submit"/>
-     			</form>
-				
+				<br>
+				<form method = "POST" enctype="multipart/form-data" >
+					<div class="form-row">
+						<div class="form-column col-md-4">
+							<label for="file" class="file-label">Choose file</label>
+							<input type="file" id="file" name="file" class="file-input">
+						</div>
+						<div class="form-column info-sub">
+							<h3>Optional Information</h3>
+							<input type="number" name="percent_steatosis" placeholder="Percent Steatosis" class="form-control">
+							<input type="number" name="donor_age" placeholder="Donor Age" class="form-control">
+							<input type="text" name="other_info" placeholder="Additional Info" class="form-control">
+							<input value="Analyze" type="submit" class="btn">	
+						</div>
+					</div>
+				</form>				
               </div>
             </div>
           </div>
