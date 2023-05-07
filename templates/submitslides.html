@@ -1,36 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Liverbase</title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="../static/styles/gen.css">
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-dark">
-	  <a class="navbar-brand" href="#">Liverbase</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNav">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item">
-	        <a class="nav-link" href="{{url_for('savedslides')}}">Saved Slides</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link active" href="{{url_for('submitslides')}}">Analyze Slides</a>
-	      </li>
-	    </ul>
-	  </div>
-	</nav>
-
+{% extends "base.html" %}
+{%block title%}Submit Slides{%endblock%}
+{% set active_page = "submitslides" %}
+{%block content%}
 	<div class="container my-4">
-        <div class="row justify-content-center">
-          <div class="col-lg-12 col-lg-6">
-            <div class="card bg-light submission-container rounded-3">
-              <div class="card-body">
-                <h2 class="card-title">Submission</h2>
+		<div class="row justify-content-center">
+		<div class="col-lg-12 col-lg-6">
+			<div class="card bg-light submission-container rounded-3">
+			<div class="card-body">
+				<h2 class="card-title">Submission</h2>
 				<br>
 				<form method = "POST" enctype="multipart/form-data" >
 					<div class="form-row">
@@ -47,15 +24,9 @@
 						</div>
 					</div>
 				</form>				
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-	<!-- jQuery and Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="../static/scripts/submit.js"></script>
-</body>
-</html>
+			</div>
+			</div>
+		</div>
+		</div>
+	</div>
+{%endblock%}
