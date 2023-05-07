@@ -11,21 +11,20 @@ class Process:
             img = cv2.imread(input_image)
         else: 
             #bytes --> nparray
-            img = np.array(Image.open(io.BytesIO(input_image.read()))) 
-            
+            img = np.array(Image.open(io.BytesIO(input_image))) 
+            #got rid of.read()
+
         img_shape = img.shape
         height = img_shape[0] #//2 rescale 
         width  = img_shape[1] # //2
         dim = (height,width)
         img = cv2.resize(img,dim)
-        print(img.shape)
         tile_size = (256, 256)
         offset = (256, 256)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         cv2.imwrite("resize_tile.png",img)
         percentage_list =[]
         interpreter = tf.lite.Interpreter(model_path=path_to_model)
-        print(type(interpreter))
         interpreter.allocate_tensors()
         # Get input and output tensors.
         input_details = interpreter.get_input_details()

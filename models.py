@@ -4,7 +4,7 @@ that will be used to create objects
 and connect to data tables.
 """
 
-from sqlalchemy import ForeignKey, Column, INTEGER, TEXT, LargeBinary, DOUBLE
+from sqlalchemy import ForeignKey, Column, INTEGER, TEXT, LargeBinary
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -40,14 +40,3 @@ class Submission(Base):
         self.other_info = other_info 
         self.file = file
         self.user_id = user_id
-
-class Result(Base):
-    __tablename__ = "result"
-
-    result_id = Column("result_id", INTEGER, primary_key = True)
-    percent_steatosis = Column("percent_steatosis", DOUBLE)
-    file = Column("output_image", LargeBinary)
-
-    def __init__(self, percent_steatosis, file): 
-        self.percent_steatosis = percent_steatosis
-        self.file = file

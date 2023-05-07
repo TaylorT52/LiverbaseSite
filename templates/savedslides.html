@@ -13,7 +13,7 @@
 							<h5 class="card-title">Submission #{{loop.index}}</h5>
 							<div class="row">
 								<div class="col">
-									<img src="data:image/png;base64, {{slide.file}}">
+									<img src="data:image/png;base64, {{slide.file.decode('utf-8') | safe }}">
 								</div>
 								<div class="col">
 									<p>Percent steatosis: {{slide.percent_steatosis}}</p>

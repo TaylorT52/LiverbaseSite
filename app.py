@@ -15,16 +15,30 @@ app.secret_key = "Change Me"
 @app.route("/savedslides", methods=["GET", "POST"])
 def savedslides():
     saved_slides = db_session.query(User).where(User.email == session["User"]).first().submissions
-    return render_template("savedslides.html", saved_slides = saved_slides)
+    show = []
+
+    #need this so that img is base64 encoded
+    for slide in saved_slides:
+        img = base64.b64encode(slide.file)
+        dict = {
+            "percent_steatosis": slide.percent_steatosis,
+            "donor_age": slide.donor_age,
+            "other_info": slide.other_info,
+            "file": img
+        }
+        show.append(dict)
+
+    return render_template("savedslides.html", saved_slides = show)
 
 @app.route("/submitslides", methods=["GET", "POST"])
 def submitslides():
     if request.method == "POST":
         f = request.files["file"]
-        results = model.tile_slide(f)
-        submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f.read())
+        f = f.read()
+        submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
         db_session.add(submission)
         db_session.commit()
+        results = model.tile_slide(f)
         flash("Success!")
     return render_template("submitslides.html")
 
