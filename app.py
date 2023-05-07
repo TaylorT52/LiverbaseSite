@@ -2,6 +2,7 @@ from flask import *
 from database import init_db, db_session
 from models import *
 import base64
+import process
 
 UPLOAD_FOLDER = "uploaded-files"
 
@@ -13,17 +14,17 @@ app.secret_key = "Change Me"
 
 @app.route("/savedslides", methods=["GET", "POST"])
 def savedslides():
-    saved_slides = db_session.query(Submission.file, Submission.percent_steatosis, Submission.donor_age, Submission.other_info, User).join(User, Submission.user_id == User.email)
-    print(type(saved_slides[0].file))
+    saved_slides = db_session.query(User).where(User.email == session["User"]).first().submissions
     return render_template("savedslides.html", saved_slides = saved_slides)
 
 @app.route("/submitslides", methods=["GET", "POST"])
 def submitslides():
     if request.method == "POST":
-        f = request.files["file"].read()
+        f = base64.b64encode(request.files["file"].read())
         submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
         db_session.add(submission)
         db_session.commit()
+        flash("Success!")
     return render_template("submitslides.html")
 
 @app.route("/", methods=["GET", "POST"])
@@ -37,7 +38,7 @@ def signin():
             session["User"] = user.email
             return redirect(url_for("submitslides"))
         else:
-            #TODO: instead of printing this, have appear on screen
+            #TODO: instead of printing this, have appear on screen -- Can use flash
             print("Incorrect user/password")
             return render_template("login.html")
     else:
@@ -67,4 +68,5 @@ def signup():
 
 if __name__ == "__main__":
     init_db()
+    model = process.Process
     app.run(port=5001)

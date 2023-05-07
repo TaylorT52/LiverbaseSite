@@ -1,0 +1,10 @@
+tk
+pillow
+PySimpleGUI
+matplotlib
+numpy
+tensorflow-macos
+glob2
+SqlAlchemy 
+Flask
+opencv-python

@@ -5,30 +5,28 @@
 	<body>
 		<br>
 		<h1>Submissions</h1>
-		<ul>
-			{% for slide in saved_slides: %}
-				<div class="row mt-3">
-					<div class="col-lg-12 col-lg-4 mb-4">
+		{% for slide in saved_slides: %}
+			<div class="row mt-3">
+				<div class="col-lg-12 col-lg-4 mb-4">
 					<div class="card h-100">
 						<div class="card-body">
-						<h5 class="card-title">Submission #{{loop.index}}</h5>
-						<div class="row">
-							<div class="col">
-								<p>Image here</p>
-							</div>
-							<div class="col">
-								<p>Percent steatosis: {{slide.percent_steatosis}}</p>
-								<p>Donor age: {{slide.donor_age}}</p>
-								<p>Additional info: {{slide.other_info}}</p>
-								<button class="btn">Delete</button>
+							<h5 class="card-title">Submission #{{loop.index}}</h5>
+							<div class="row">
+								<div class="col">
+									<img src="data:image/png;base64, {{slide.file}}">
+								</div>
+								<div class="col">
+									<p>Percent steatosis: {{slide.percent_steatosis}}</p>
+									<p>Donor age: {{slide.donor_age}}</p>
+									<p>Additional info: {{slide.other_info}}</p>
+									<button class="btn">Delete</button>
+								</div>
 							</div>
 						</div>
-						</div>
 					</div>
-					</div>
-			 	</div>
-			{% endfor %}
-		</ul> 
+				</div>
+			</div>
+		{% endfor %}
 		<script src="../static/scripts/submit.js"></script> 
 	</body>
 {%endblock%}
