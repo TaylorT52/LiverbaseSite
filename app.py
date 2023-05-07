@@ -20,8 +20,9 @@ def savedslides():
 @app.route("/submitslides", methods=["GET", "POST"])
 def submitslides():
     if request.method == "POST":
-        f = base64.b64encode(request.files["file"].read())
-        submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
+        f = request.files["file"]
+        results = model.tile_slide(f)
+        submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f.read())
         db_session.add(submission)
         db_session.commit()
         flash("Success!")

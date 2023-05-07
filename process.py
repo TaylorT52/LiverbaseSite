@@ -3,15 +3,21 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
+import io
 
 class Process:
-    def tile_slide(input_image, path_to_model = "tflite_unet-epoch293.tflite", file_path= ""):
-        img = cv2.imread(input_image) # 512x512
+    def tile_slide(input_image, path_to_model = "tflite_unet-epoch293.tflite"):
+        if isinstance(input_image, str):
+            img = cv2.imread(input_image)
+        else: 
+            #bytes --> nparray
+            img = np.array(Image.open(io.BytesIO(input_image.read()))) 
+            
         img_shape = img.shape
         height = img_shape[0] #//2 rescale 
         width  = img_shape[1] # //2
         dim = (height,width)
-        #img = cv2.resize(img,dim)
+        img = cv2.resize(img,dim)
         print(img.shape)
         tile_size = (256, 256)
         offset = (256, 256)
@@ -19,6 +25,7 @@ class Process:
         cv2.imwrite("resize_tile.png",img)
         percentage_list =[]
         interpreter = tf.lite.Interpreter(model_path=path_to_model)
+        print(type(interpreter))
         interpreter.allocate_tensors()
         # Get input and output tensors.
         input_details = interpreter.get_input_details()
@@ -28,6 +35,7 @@ class Process:
         for i in range(0,img_shape[0],256):
             row_block = []
             for j in range(0,img_shape[1],256):
+                print("J: " + str(j))
                 cropped_img = img[i:i+256, j:j+256]
                 im = np.asarray(cropped_img)
                 height,width = im.shape
@@ -45,9 +53,10 @@ class Process:
                     masks_elements = masks.shape[0] * masks.shape[1]
                     zero = masks_elements - non_zero
                     percentage = (non_zero/masks_elements)*100
-                    print(percentage)
-                    if percentage > 1:
-                        percentage_list.append(percentage)
+                    print("Masks: " + str(masks))
+                    print("Percent: " + str(percentage))
+                    #if percentage > 1:
+                    percentage_list.append(percentage)
                     row_block.append(masks)
                 else:
                     print("This case")
@@ -59,10 +68,10 @@ class Process:
         full_mask = np.block(block)
         save_mask = Image.fromarray(full_mask*255)
         save_mask = save_mask.convert("L")
-        save_mask.save(input_image+"_mask.png")
+        save_mask.save("input_mask.png")
         print("average globules percentage")
         average_tissue = (sum(percentage_list))/(len(percentage_list))
-        plt.plot([i for i in range(len(percentage_list))],percentage_list)
-        plt.savefig("steatosis_distribution_plot.png")
+        #plt.plot([i for i in range(len(percentage_list))],percentage_list)
+        #plt.savefig("steatosis_distribution_plot.png")
         print(average_tissue)
-        return average_tissue, percentage_list, input_image+"_mask.png"
+        return average_tissue
