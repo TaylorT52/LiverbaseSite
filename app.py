@@ -1,6 +1,7 @@
 from flask import *
 from database import init_db, db_session
 from models import *
+import base64
 
 UPLOAD_FOLDER = "uploaded-files"
 
@@ -12,7 +13,9 @@ app.secret_key = "Change Me"
 
 @app.route("/savedslides", methods=["GET", "POST"])
 def savedslides():
-    return render_template("savedslides.html")
+    saved_slides = db_session.query(Submission.file, Submission.percent_steatosis, Submission.donor_age, Submission.other_info, User).join(User, Submission.user_id == User.email)
+    print(type(saved_slides[0].file))
+    return render_template("savedslides.html", saved_slides = saved_slides)
 
 @app.route("/submitslides", methods=["GET", "POST"])
 def submitslides():
