@@ -4,10 +4,7 @@ from models import *
 import base64
 import process
 
-UPLOAD_FOLDER = "uploaded-files"
-
 app = Flask(__name__)
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 # TODO: Change the secret key
 app.secret_key = "Change Me"
@@ -19,14 +16,13 @@ def savedslides():
 
     #need this so that img is base64 encoded
     for slide in saved_slides:
-        img = base64.b64encode(slide.file)
-        dict = {
+        temp = {
             "percent_steatosis": slide.percent_steatosis,
             "donor_age": slide.donor_age,
             "other_info": slide.other_info,
-            "file": img
+            "file": base64.b64encode(slide.file)
         }
-        show.append(dict)
+        show.append(temp)
 
     return render_template("savedslides.html", saved_slides = show)
 

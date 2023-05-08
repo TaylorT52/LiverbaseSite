@@ -12,7 +12,8 @@
 							<br>
 							{% for message in get_flashed_messages() %}
 								<div class="alert alert-success alert-dismissible" id=”div_flash”>
-									<button type="button" onlick="removeFlash()">Test Me</button> 
+									<!--method to remove flash here-->
+									<button type="button" onlick="">Test Me</button> 
 									{{message}}
 								</div> 
 							{% endfor %}
@@ -36,6 +37,5 @@
 				</div>
 			</div>
 		</div>
-		<script src="../static/scripts/submit.js"></script>
 	</body>
 {%endblock%}
