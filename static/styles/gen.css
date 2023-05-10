@@ -104,5 +104,23 @@ h3 {
 .popup-content > img {
     margin-right: auto; 
     margin-left: auto; 
+    margin-bottom: 10px;
     width: 100px;
+}
+
+.close-popup{
+    width: 25px;
+    margin-top: 7px;
+    margin-left: 460px;
+    background-color: white;
+    border: none;
+    font-size: 20px;
+}
+
+.hide-popup{
+    visibility: hidden
+}
+
+.show-popup{
+    visibility: visible
 }

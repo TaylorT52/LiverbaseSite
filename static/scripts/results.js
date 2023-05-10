@@ -1,4 +1,5 @@
 const del_button = document.querySelectorAll("[id^='delete-btn-']")
+const popup = document.getElementsByClassName("popup")[0]
 
 del_button.forEach(button => {
     button.addEventListener("click", function(event){
@@ -8,16 +9,23 @@ del_button.forEach(button => {
 })
 
 function deleteEntry(entryId){
-    console.log('hello!')
+    console.log(popup.style)
     fetch("/savedslides/" + entryId, {
         method: "DELETE"
     })
     .then(response =>{
-        location.reload()
         if(response.ok){
-            alert("Your entry has been deleted!")
+            popup.classList.replace("hide-popup", "show-popup")
+            console.log(popup.classList)
         }else{
             alert("Error deleting entry :(")
         }
     })
+}
+
+function closePopup(){
+    console.log("Close")
+    popup.classList.add("hide-popup")
+    console.log(popup.classList)
+    location.reload()
 }

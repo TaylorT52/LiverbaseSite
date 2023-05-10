@@ -3,9 +3,9 @@
 {% set active_page = "savedslides" %}
 {%block content%}
 	<body>
-		<div class="popup">
+		<div class="popup hide-popup">
 			<div class="card popup-content">
-				<br>
+				<button class="close-popup" onclick="closePopup()">&times;</button>
 				<img src="../static/images/greencheck.png">
 				<p>Your entry has been successfully deleted</p>
 			</div>

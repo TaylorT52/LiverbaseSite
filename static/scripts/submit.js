@@ -1,10 +1,8 @@
 const fileForm = document.getElementById("file")
 
 console.log(fileForm)
-console.log("hello")
 
 fileForm.addEventListener("input", function(){
-    console.log("hi!")
     var inputVal = fileForm.files[0]
 
     if(inputVal != ""){
