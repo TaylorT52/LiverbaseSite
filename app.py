@@ -29,7 +29,6 @@ def savedslides():
 
     for slide in saved_slides:
         result = slide.result[0]
-        
         temp = {
             "percent_steatosis": slide.percent_steatosis,
             "donor_age": slide.donor_age,
@@ -39,7 +38,6 @@ def savedslides():
             "image": base64.b64encode(result.mask)
         }
         show.append(temp)
-
     return render_template("savedslides.html", saved_slides = show)
 
 @app.route("/submitslides", methods=["GET", "POST"])

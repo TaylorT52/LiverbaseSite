@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {%block title%}Saved Slides{%endblock%}
 {% set active_page = "savedslides" %}
+{% block othercss%}
+	<link rel="stylesheet" href="{{url_for('static', filename='styles/savedslides.css')}}">
+{%endblock%}
 {%block content%}
 	<body>
 		<div class="popup hide-popup">
