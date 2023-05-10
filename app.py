@@ -39,17 +39,18 @@ def submitslides():
     if request.method == "POST":
         f = request.files["file"]
         f = f.read()
-        #TODO: Clean up
-        submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
-        db_session.add(submission)
-        db_session.commit()
-        steatosis, img = model.tile_slide(f)
-        results = Result(submission.submission_id, steatosis, img)
-        db_session.add(results)
-        db_session.commit()
-        flash("Success!")
-        session["submission_id"] = submission.submission_id
-        return redirect(url_for("results"))
+        if(f):
+            submission = Submission(session["User"], request.form["donor_age"], request.form["percent_steatosis"], request.form["other_info"], f)
+            db_session.add(submission)
+            db_session.commit()
+            steatosis, img = model.tile_slide(f)
+            results = Result(submission.submission_id, steatosis, img)
+            db_session.add(results)
+            db_session.commit()
+            session["submission_id"] = submission.submission_id
+            return redirect(url_for("results"))
+        else: 
+            flash("Missing image upload!", "error")
     return render_template("submitslides.html")
 
 @app.route("/", methods=["GET", "POST"])
@@ -92,8 +93,9 @@ def signup():
 
 @app.route("/results", methods=["GET"])
 def results():
-    res = db_session.query(Result).where(Result.submission_id == session["submission_id"]).first()
-    return render_template("results.html", results=res)
+    sub = db_session.query(Submission).where(Submission.submission_id == session["submission_id"]).first()
+    res = sub.result[0].mask
+    return render_template("results.html", results=res, submission=sub)
 
 if __name__ == "__main__":
     init_db()

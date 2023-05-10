@@ -11,7 +11,7 @@
 							<h2 class="card-title">Results</h2>
                             {%if not results == None%}
                                 <div class="col">
-                                    <img src="data:image/png;base64, {{results.mask.decode('utf-8') | safe }}">
+									<img src="../input_mask.png">
                                 </div>
                                 <div class="col">
                                     <p>Percent steatosis: {{results.percent_steatosis}}%</p>

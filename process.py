@@ -62,9 +62,10 @@ class Process:
                     masks = np.zeros((256,256))
                     row_block.append(masks)
             block.append(row_block)
-            print(block)
+
         full_mask = np.block(block)
         save_mask = Image.fromarray(full_mask*255)
+        im.save(save_mask, "input_mask_new.png")
         save_mask = save_mask.convert("L")
         save_mask = base64.b64encode(save_mask.tobytes())
 
@@ -73,4 +74,4 @@ class Process:
         #plt.plot([i for i in range(len(percentage_list))],percentage_list)
         #plt.savefig("steatosis_distribution_plot.png")
         print(average_tissue)
-        return average_tissue, save_mask
+        return average_tissue*100, save_mask
