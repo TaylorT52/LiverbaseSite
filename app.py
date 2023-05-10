@@ -59,7 +59,9 @@ def submitslides():
 
 @app.route("/", methods=["GET", "POST"])
 def signin():
+    session["User"] = None
     if request.method == "POST":
+        session["User"] = None
         email = request.form["email"]
         password = request.form["password"]
         user = db_session.query(User).where((User.email == email) & (User.password == password)).first()
@@ -68,8 +70,7 @@ def signin():
             session["User"] = user.email
             return redirect(url_for("submitslides"))
         else:
-            #TODO: instead of printing this, have appear on screen -- Can use flash
-            print("Incorrect user/password")
+            flash("Incorrect username/password", "error")
             return render_template("login.html")
     else:
         return render_template("login.html")
@@ -81,16 +82,20 @@ def signup():
         password = request.form["password"]
         password2 = request.form["password-attempt2"]
         
-        if password == password2:
-            #TODO- is there a cleaner way to do this?? (add to list?)
+        user = db_session.query(User).where((User.email == email) & (User.password == password)).first()
+
+        if password == password2 and user is None:
             add_user = User(email = email, password = password)
             db_session.add(add_user)
             db_session.commit()
             print("success!")
             session["User"] = add_user.email
             return redirect(url_for("submitslides"))
+        elif not user is None:
+            flash("This user already exists", "error")
+            return render_template("signup.html")
         else:
-            print("Doesn't match")
+            flash("Passwords do not match!", "error")
             return render_template("signup.html")
     else:
         return render_template("signup.html")

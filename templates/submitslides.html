@@ -19,19 +19,15 @@
 							{% with messages = get_flashed_messages(with_categories=true) %}
 								{% if messages %}
 									{% for category, message in messages %}
-										<div class="alert alert-danger" role="alert">
-											<div class="row">
-												<div class="col col-lg-10">
-													<p>{{message}}</p>
-												</div>
-												<div class="col">
-													<button onclick="closeFlash()" class="close">&times;</button>
-												</div>
-											</div>
+										<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										{{message}}
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
 										</div>
 									{% endfor %}
 								{% endif %}
-						  	{% endwith %}
+							{% endwith %}
 							<br>
 							<form method = "POST" enctype="multipart/form-data" >
 								<div class="form-row">
