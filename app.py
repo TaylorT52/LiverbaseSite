@@ -50,11 +50,17 @@ def submitslides():
             db_session.add(submission)
             db_session.commit()
             steatosis, img = model.tile_slide(f)
-            results = Result(submission.submission_id, steatosis, img)
-            db_session.add(results)
-            db_session.commit()
-            session["submission_id"] = submission.submission_id
-            return redirect(url_for("results"))
+            if not steatosis == -1:
+                results = Result(submission.submission_id, steatosis, img)
+                db_session.add(results)
+                db_session.commit()
+                session["submission_id"] = submission.submission_id
+                return redirect(url_for("results"))
+            else: 
+                print(submission)
+                db_session.remove(submission)
+                db_session.commit()
+                return render_template("submitslides.html")
         else: 
             flash("Missing image upload!", "error")
     return render_template("submitslides.html")
@@ -111,4 +117,4 @@ def results():
 if __name__ == "__main__":
     init_db()
     model = process.Process
-    app.run(port=5001, debug=True)
+    app.run(port="5001", debug=True)

@@ -30,6 +30,7 @@ class Process:
         output_details = interpreter.get_output_details()
         block = []
         for i in range(0,img_shape[0],256):
+            print(i)
             row_block = []
             for j in range(0,img_shape[1],256):
                 cropped_img = img[i:i+256, j:j+256]
@@ -62,5 +63,8 @@ class Process:
         img_byte_arr = io.BytesIO()
         save_mask.save(img_byte_arr, format='PNG')
         img_byte_arr = img_byte_arr.getvalue()
-        average_tissue = (sum(percentage_list))/(len(percentage_list))
+        try:
+            average_tissue = (sum(percentage_list))/(len(percentage_list))
+        except(ZeroDivisionError):
+            average_tissue = -1
         return average_tissue, img_byte_arr
