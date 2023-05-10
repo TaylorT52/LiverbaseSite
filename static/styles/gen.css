@@ -50,11 +50,11 @@ h3 {
     justify-content: left;
     align-items: center; 
     height: 180px;
-    width: 400px;
 }
 
 .subimg-container > img{
     height: 100%;
+    margin-right: 20px;
 }
 
 .col-results{

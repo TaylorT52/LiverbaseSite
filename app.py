@@ -24,12 +24,15 @@ def savedslides():
 
     #need this so that img is base64 encoded
     for slide in saved_slides:
+        result = slide.result[0]
+        
         temp = {
             "percent_steatosis": slide.percent_steatosis,
             "donor_age": slide.donor_age,
             "other_info": slide.other_info,
             "file": base64.b64encode(slide.file),
-            "result": base64.b64encode(slide.result[0].mask)
+            "ret_steatosis": round(result.percent_steatosis,2),
+            "image": base64.b64encode(result.mask)
         }
         show.append(temp)
 
