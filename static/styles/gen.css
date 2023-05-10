@@ -1,3 +1,4 @@
+/* gen */ 
 body{
     background-color: #F2EFEF; 
 }
@@ -20,7 +21,7 @@ body{
 .card {
     border: none;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     margin-top:10px;
 }
 
