@@ -12,13 +12,13 @@
 							<br>
 							<form method = "POST" enctype="multipart/form-data" >
 								<div class="form-row">
-
 									<div class="form-column col-md-4" id="file-container">
-										<label for="file" class="file-label">Choose file</label>
+										<div class="fileimg-container">
+											<img id="replaceimg" src="../static/images/uploadimg.png">
+										</div>
+										<label for="file" class="file-label"></label>
 										<input type="file" id="file" name="file" class="file-input">
-									</div>
-
-									
+									</div>									
 									<div class="form-column info-sub">
 										<h3>Optional Information</h3>
 										<input type="number" name="percent_steatosis" placeholder="Percent Steatosis" class="form-control">
