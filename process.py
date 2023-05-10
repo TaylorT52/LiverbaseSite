@@ -63,4 +63,4 @@ class Process:
         save_mask.save(img_byte_arr, format='PNG')
         img_byte_arr = img_byte_arr.getvalue()
         average_tissue = (sum(percentage_list))/(len(percentage_list))
-        return average_tissue*100, img_byte_arr
+        return average_tissue, img_byte_arr

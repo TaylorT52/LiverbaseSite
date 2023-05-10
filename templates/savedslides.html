@@ -30,7 +30,7 @@
 									<div class="col col-results">
 										{% set default, empty = "--", "" %}
 										<p>Given percent steatosis: {{slide.percent_steatosis if not slide.percent_steatosis == empty else default}}</p>
-										<p>Calculated percent steatosis: {{ slide.ret_steatosis if not slide.ret_steatosis == empty else default}}</p>
+										<p>Calculated percent steatosis: {{ slide.ret_steatosis|string+"%" if not slide.ret_steatosis == empty else default}}</p>
 										<p>Donor age: {{slide.donor_age if not slide.donor_age == empty else default}}</p>
 										<p>Additional info: {{slide.other_info if not slide.other_info == empty else default}}</p>
 										<button class="btn" id="delete-btn-{{loop.index}}" ref="sub" subId="{{loop.index}}">Delete</button>

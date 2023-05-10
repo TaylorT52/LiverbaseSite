@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="../static/styles/gen.css">
+        
     </head>
     <body>
         {% set active_page = active_page|default('savedslides') -%}
@@ -24,7 +25,7 @@
                   <a class="nav-link {{ 'active' if active_page == 'submitslides' else '' }}" href="{{url_for('submitslides')}}">Analyze Slides</a>
                 </li>
               </ul>
-                <a href="{{url_for('signin')}}" id="logout">Log out</a>
+                <a href="{{url_for('l')}}" id="logout">Log out</a>
             </div>
         </nav>
         <div class="container">

@@ -9,6 +9,12 @@ app = Flask(__name__)
 # TODO: Change the secret key
 app.secret_key = "Change Me"
 
+@app.route("/logout")
+def logout():
+    print("logging out")
+    session.pop("Username", None)
+    return redirect(url_for("signin"))
+
 @app.route("/savedslides/<int:entry_id>", methods=["DELETE"])
 def delete_entry(entry_id):
     submissions = db_session.query(User).where(User.email == session["User"]).first().submissions
@@ -59,7 +65,6 @@ def submitslides():
 
 @app.route("/", methods=["GET", "POST"])
 def signin():
-    session["User"] = None
     if request.method == "POST":
         session["User"] = None
         email = request.form["email"]
