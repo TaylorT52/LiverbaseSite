@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Sign Up | Liverbase</title>
-    <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/loginsignup.css')}}">
-</head>
-<body>
-	<div class="container">
-        <h1 class="signup-text">Sign Up</h1>
-        <div class="col-lg-12 col-sm-12 d-flex justify-content-center align-items-center ml-n3">
-            <div class="box">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{message}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                <form method="POST">
-                    <div class="form-group">
-                        <input type="Name" class="form-control" id="Name" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="Email" class="form-control" placeholder="Email" id="email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <input type="Password" class="form-control" placeholder="Password" id="password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <input type="Password" class="form-control" placeholder="Confirm Password" id="password-attempt2" name="password-attempt2">
-                    </div>
-                    <hr>
-                    <button type="submit" class="btn">Sign Up</button>
-                </form>
-                <br>
-                <p>Already have an account? <a href="{{url_for('signin')}}">Log in here</a>.</p>
+    <head>
+        <title>Sign Up</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/loginsignup.css')}}">
+        <link rel="icon" href="{{url_for('static', filename='images/LiverBaseSplash.png')}}">
+    </head>
+    <body>
+        <!-- Basic style generated with ChatGPT, edited by me; forms, flashes, buttons, etc. written by me -->
+        <div class="container">
+            <h1 class="signup-text">Sign Up</h1>
+            <div class="col-lg-12 col-sm-12 d-flex justify-content-center align-items-center ml-n3">
+                <div class="box">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{message}}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <form method="POST">
+                        <div class="form-group">
+                            <input type="Email" class="form-control" placeholder="Email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="Password" class="form-control" placeholder="Password" id="password" name="password">
+                        </div>
+                        <div class="form-group">
+                            <input type="Password" class="form-control" placeholder="Confirm Password" id="password-attempt2" name="password-attempt2">
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn">Sign Up</button>
+                    </form>
+                    <br>
+                    <p>Already have an account? <a href="{{url_for('signin')}}">Log in here</a>.</p>
+                </div>
             </div>
-
         </div>
-	
-	</div>
-    <!-- Bootstrap JS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+        <!-- Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 </html>
