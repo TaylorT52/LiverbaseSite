@@ -35,7 +35,6 @@ class Process:
         for i in range(0,img_shape[0],256):
             row_block = []
             for j in range(0,img_shape[1],256):
-                print("J: " + str(j))
                 cropped_img = img[i:i+256, j:j+256]
                 im = np.asarray(cropped_img)
                 height,width = im.shape
@@ -53,12 +52,9 @@ class Process:
                     masks_elements = masks.shape[0] * masks.shape[1]
                     zero = masks_elements - non_zero
                     percentage = (non_zero/masks_elements)*100
-                    print("Masks: " + str(masks))
-                    print("Percent: " + str(percentage))
                     percentage_list.append(percentage)
                     row_block.append(masks)
                 else:
-                    print("This case")
                     masks = np.zeros((256,256))
                     row_block.append(masks)
             block.append(row_block)
@@ -66,15 +62,8 @@ class Process:
         full_mask = np.block(block)
         save_mask = Image.fromarray(full_mask*255)
         save_mask = save_mask.convert("L")
-        save_mask.save("new_mask.png")
-
         img_byte_arr = io.BytesIO()
         save_mask.save(img_byte_arr, format='PNG')
         img_byte_arr = img_byte_arr.getvalue()
-
-        print("average globules percentage")
         average_tissue = (sum(percentage_list))/(len(percentage_list))
-        #plt.plot([i for i in range(len(percentage_list))],percentage_list)
-        #plt.savefig("steatosis_distribution_plot.png")
-        print(average_tissue)
         return average_tissue*100, img_byte_arr
