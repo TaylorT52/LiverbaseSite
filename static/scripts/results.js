@@ -1,3 +1,5 @@
+//All written by me, helps delete entries and work with popups
+
 const del_button = document.querySelectorAll("[id^='delete-btn-']")
 const popup = document.getElementsByClassName("popup")[0]
 
