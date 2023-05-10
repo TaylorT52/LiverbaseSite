@@ -4,16 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 import io
-import base64
 
 class Process:
     def tile_slide(input_image, path_to_model = "tflite_unet-epoch293.tflite"):
         if isinstance(input_image, str):
             img = cv2.imread(input_image)
         else: 
-            #bytes --> nparray
             img = np.array(Image.open(io.BytesIO(input_image))) 
-            #got rid of.read()
 
         img_shape = img.shape
         height = img_shape[0] #//2 rescale 
