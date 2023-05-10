@@ -5,7 +5,7 @@
 	<body>
 		<div class="popup hide-popup">
 			<div class="card popup-content">
-				<img src="../static/images/greencheck.png">
+				<img src="{{url_for('static', filename='images/greencheck.png')}}">
 				<p>Your entry has been successfully deleted</p>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 			<br>
 			<h3> ¯\_(ツ)_/¯ You currently have no submissions. </h3>
 		{% endif %}
-		<script src="../static/scripts/results.js"></script>
+		<script src="{{url_for('static', filename='scripts/results.js')}}"></script>
 	</body>
 {%endblock%}
 

@@ -11,7 +11,6 @@ app.secret_key = "Change Me"
 
 @app.route("/logout")
 def logout():
-    print("logging out")
     session.pop("Username", None)
     return redirect(url_for("signin"))
 
@@ -28,7 +27,6 @@ def savedslides():
     saved_slides = db_session.query(User).where(User.email == session["User"]).first().submissions
     show = []
 
-    #need this so that img is base64 encoded
     for slide in saved_slides:
         result = slide.result[0]
         

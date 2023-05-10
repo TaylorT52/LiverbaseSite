@@ -5,14 +5,14 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="../static/styles/gen.css">
-        
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/gen.css')}}">
+        <link rel="icon" href="{{url_for('static', filename='images/LiverBaseSplash.png')}}">
     </head>
     <body>
         {% set active_page = active_page|default('savedslides') -%}
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <img id="logo" src="../static/images/LiverBaseSplash.png" alt="">
-            <a class="navbar-brand" href="#">Liverbase</a>
+            <img id="logo" src="{{url_for('static', filename='images/LiverBaseSplash.png')}}" alt="">
+            <a class="navbar-brand" href="">Liverbase</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
                   <a class="nav-link {{ 'active' if active_page == 'submitslides' else '' }}" href="{{url_for('submitslides')}}">Analyze Slides</a>
                 </li>
               </ul>
-                <a href="{{url_for('l')}}" id="logout">Log out</a>
+                <a href="{{url_for('logout')}}" id="logout">Log out {{session['User']}}</a>
             </div>
         </nav>
         <div class="container">

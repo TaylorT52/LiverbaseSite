@@ -17,7 +17,6 @@ function deleteEntry(entryId){
         if(response.ok){
             popup.classList.replace("hide-popup", "show-popup")
             setInterval(closePopup, 2000)
-            console.log(popup.classList)
         }else{
             alert("Error deleting entry :(")
         }
