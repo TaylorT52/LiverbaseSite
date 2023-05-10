@@ -1,7 +1,9 @@
-body {
-	background-color: #F2EFEF;
-	background-image: url("/static/images/LiverBaseSplash.png");
-	background-repeat: no-repeat;
-	background-size: 58%;
-	background-position: right top;
+@media only screen and (min-width: 800px) {
+    body {
+        background-color: #F2EFEF;
+        background-image: url("/static/images/LiverBaseSplash.png");
+        background-repeat: no-repeat;
+        background-size: 58vw 100vh;
+        background-position: right top;
+    }
 }
