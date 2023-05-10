@@ -16,6 +16,16 @@ body{
     border-radius:100px;
 }
 
+#logout{
+    background-color: #8C1515;
+    border: none;
+    color: white;
+    margin-right: 30px;
+}
+
+#logout:hover{
+    text-decoration: underline;
+}
 
 /*general (cards, etc.)*/ 
 .card {
@@ -51,7 +61,6 @@ body{
 h3 {
     margin-bottom:20px;
 }
-
 
 /* pop up */ 
 .popup{
@@ -89,22 +98,10 @@ h3 {
     visibility: visible
 }
 
-
 .no-image{
     height: 55px;
 }
 
 .bad-password{
     height: 10px;
-}
-
-#logout{
-    background-color: #8C1515;
-    border: none;
-    color: white;
-    margin-right: 30px;
-}
-
-#logout:hover{
-    text-decoration: underline;
 }
