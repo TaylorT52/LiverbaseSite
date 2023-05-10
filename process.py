@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 import io
+import base64
 
 class Process:
     def tile_slide(input_image, path_to_model = "tflite_unet-epoch293.tflite"):
@@ -54,23 +55,22 @@ class Process:
                     percentage = (non_zero/masks_elements)*100
                     print("Masks: " + str(masks))
                     print("Percent: " + str(percentage))
-                    #if percentage > 1:
                     percentage_list.append(percentage)
                     row_block.append(masks)
                 else:
                     print("This case")
                     masks = np.zeros((256,256))
                     row_block.append(masks)
-                #cv2.imwrite(file_path + "/" + str(i//256) + "_" + str(j//256) + ".png", cropped_img)
             block.append(row_block)
             print(block)
         full_mask = np.block(block)
         save_mask = Image.fromarray(full_mask*255)
         save_mask = save_mask.convert("L")
-        save_mask.save("input_mask.png")
+        save_mask = base64.b64encode(save_mask.tobytes())
+
         print("average globules percentage")
         average_tissue = (sum(percentage_list))/(len(percentage_list))
         #plt.plot([i for i in range(len(percentage_list))],percentage_list)
         #plt.savefig("steatosis_distribution_plot.png")
         print(average_tissue)
-        return average_tissue
+        return average_tissue, save_mask

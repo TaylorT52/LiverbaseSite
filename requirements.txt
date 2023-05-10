@@ -8,3 +8,5 @@ glob2
 SqlAlchemy 
 Flask
 opencv-python
+base64
+io

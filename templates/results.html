@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{%block title%}Results{%endblock%}
+{% set active_page = "submitslides" %}
+{%block content%}
+	<body>
+		<div class="container my-4">
+			<div class="row justify-content-center">
+				<div class="col-lg-12 col-lg-6">
+					<div class="card bg-light submission-container rounded-3">
+						<div class="card-body">
+							<h2 class="card-title">Results</h2>
+                            {%if not results == None%}
+                                <div class="col">
+                                    <img src="data:image/png;base64, {{results.mask.decode('utf-8') | safe }}">
+                                </div>
+                                <div class="col">
+                                    <p>Percent steatosis: {{results.percent_steatosis}}%</p>
+                                </div>
+                            {%endif%}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+{%endblock%}
