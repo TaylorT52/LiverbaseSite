@@ -65,13 +65,16 @@ class Process:
 
         full_mask = np.block(block)
         save_mask = Image.fromarray(full_mask*255)
-        im.save(save_mask, "input_mask_new.png")
         save_mask = save_mask.convert("L")
-        save_mask = base64.b64encode(save_mask.tobytes())
+        save_mask.save("new_mask.png")
+
+        img_byte_arr = io.BytesIO()
+        save_mask.save(img_byte_arr, format='PNG')
+        img_byte_arr = img_byte_arr.getvalue()
 
         print("average globules percentage")
         average_tissue = (sum(percentage_list))/(len(percentage_list))
         #plt.plot([i for i in range(len(percentage_list))],percentage_list)
         #plt.savefig("steatosis_distribution_plot.png")
         print(average_tissue)
-        return average_tissue*100, save_mask
+        return average_tissue*100, img_byte_arr

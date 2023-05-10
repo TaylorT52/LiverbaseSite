@@ -28,7 +28,8 @@ def savedslides():
             "percent_steatosis": slide.percent_steatosis,
             "donor_age": slide.donor_age,
             "other_info": slide.other_info,
-            "file": base64.b64encode(slide.file)
+            "file": base64.b64encode(slide.file),
+            "result": base64.b64encode(slide.result[0].mask)
         }
         show.append(temp)
 
@@ -94,8 +95,9 @@ def signup():
 @app.route("/results", methods=["GET"])
 def results():
     sub = db_session.query(Submission).where(Submission.submission_id == session["submission_id"]).first()
-    res = sub.result[0].mask
-    return render_template("results.html", results=res, submission=sub)
+    res = base64.b64encode(sub.result[0].mask)
+    percent_steatosis = round(sub.result[0].percent_steatosis, 2)
+    return render_template("results.html", results=res, submission=base64.b64encode(sub.file), percent_steatosis=percent_steatosis)
 
 if __name__ == "__main__":
     init_db()
