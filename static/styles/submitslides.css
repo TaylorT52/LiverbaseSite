@@ -1,4 +1,6 @@
 /* submissions */ 
+
+/*Form styling (chatGPT) */
 .form-row {
     display: flex;
     flex-direction: row;
@@ -21,6 +23,8 @@
     width: 500px;
 }
 
+
+/* image and file styling (me) */
 .file-label {
     display: block;
     border: 2px dotted black;
@@ -63,7 +67,7 @@
     width: 200px;
 }
 
-/* loader */ 
+/* loader (me) */ 
 .loader {
     border: 10px solid #f3f3f3; 
     border-top: 10px solid #8C1515;
